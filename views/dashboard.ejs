@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Trash Talk</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    <div>
+        <div class="row mx-0">
+            <div id="left-content" class="col-3 border-right">
+                <div class="header sticky-top">
+                    <div class="row h-100">
+                        <div id="user-info" class="col-lg-6 pl-4 my-auto">
+                            <img class="user-image user-image-medium rounded-circle" src="/images/default-avatar.jpg" alt="avatar">
+                            <h2 class="font-weight-bold">Chats</h2>
+                        </div>
+                        <div class="action-group col-lg-6 my-auto">
+                            <a href="#"><i class="fa fa-pencil-square-o fa-2x pull-right"></i></a>
+                            <a href="#"><i class="fa fa-cog fa-2x pull-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content">
+                    <div id="search-box" class="pb-3">
+                        <label class="pl-2 w-100">
+                            <input type="text" placeholder="Search Messenger">
+                        </label>
+                    </div>
+                    <div id="list-box-chat">
+                        <% if (conversations.length > 0) { %>
+                            <% conversations.forEach(function(conversation){ %>
+                                <a href="/messages/t/<%= conversation.username %>" class="clickable-group">
+                                    <div class="box-chat my-auto pl-2 pb-3">
+                                        <div>
+                                            <img class="user-image user-image-large rounded-circle" src="/images/default-avatar.jpg" alt="avatar">
+                                        </div>
+                                        <div>
+                                            <div class="div-top-after-thumbnail">
+                                                <span class="text-black text-medium"><%= conversation.name %></span>
+                                            </div>
+                                            <div class="last-message div-bottom-after-thumbnail">
+                                                <span class="short-content text-muted text-tiny"> <%= conversation.content %></span>
+                                                <span>·</span>
+                                                <span class="created-at text-muted text-tiny"><%= formatDatetimeLastMessage(conversation.message_created_at, 'ddd') %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div id="right-content" class="col-9">
+                <div class="header sticky-top">
+                    <div class="row h-100">
+                        <div id="center" class="col-lg-8">
+                            <div class="row h-100 border-bottom">
+                                <div class="col-lg-6 my-auto pl-4">
+                                    <div>
+                                        <img class="user-image user-image-medium rounded-circle" src="/images/default-avatar.jpg" alt="avatar">
+                                    </div>
+                                    <div class="text-after-thumbnail">
+                                        <div>
+                                            <span class="user-name font-weight-bold text-medium">Friend name</span>
+                                        </div>
+                                        <div>
+                                            <span class="active-status text-muted text-tiny">Active status</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="action-button" class="col-lg-4">
+                            <div class="action-group row h-100 border-bottom">
+                                <div class="col-lg-6 my-auto pl-4 offset-lg-6">
+                                    <a href="#"><i class="fa fa-exclamation-circle fa-2x pull-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-content-message col-12">
+                        <div class="messages">
+                            <ul class="list-group" >
+                                <% if (messages.length > 0) { %>
+                                    <% messages.forEach(function(message){ %>
+                                        <li class="<%= message.user_id == user.id ? 'sent' : 'recieved' %>">
+                                            <img class="user-image user-image-tiny rounded-circle" src="/images/default-avatar.jpg" alt="avatar-tiny">
+                                            <p title="<%= formatDatetime(message.created_at, 'hh:MM dd/mm/yy') %>"><%= message.content %></p>
+                                        </li>
+                                    <% }); %>
+                                <% } %>
+                            </ul>
+                        </div>
+                        <div class="message-input">
+                            <div class="wrap row h-100 border-top">
+                                <input type="text" placeholder="Type your message...">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="main-content-message col-4 border-left">-->
+                        <!--<div class="messages">-->
+                            <!--<ul class="list-group"></ul>-->
+                        <!--</div>-->
+                        <!--<div class="message-input">-->
+                            <!--<div class="wrap row h-100 border-top">-->
+                                <!--<input type="text" placeholder="Write your message...">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!--===============================================================================================-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--===============================================================================================-->
+<script>
+    $(window).on('load', function() {
+        var scrolled = false;
+        updateScroll();
+        function updateScroll(){
+            if(!scrolled){
+                $('.messages').scrollTop($('.messages')[0].scrollHeight);
+            }
+        }
+
+        $(".messages").on('scroll', function(){
+            scrolled=true;
+        });
+
+        setInterval(updateScroll,1000);
+    });
+</script>
+<!--===============================================================================================-->
+
+</html>

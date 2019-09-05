@@ -1,0 +1,206 @@
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.38);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+body {
+    box-sizing: border-box;
+    height: 100%;
+    overflow-x: hidden!important;
+}
+
+ul {
+    list-style: none;
+}
+
+.header {
+    height: 60px;
+    background: #fff;
+}
+
+.user-image {
+    float: left;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.user-image-tiny {
+    width: 20px;
+    height: 20px;
+}
+
+.user-image-medium {
+    width: 40px;
+    height: 40px;
+}
+
+.user-image-large {
+    width: 50px;
+    height: 50px;
+}
+
+.user-image-full {
+    width: 100px;
+    height: 100px;
+}
+
+.clickable-group {
+    color: inherit;
+}
+.clickable-group:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.text-black {
+    color: rgba(0, 0, 0, 1);
+}
+.text-tiny {
+    font-size: 0.85em;
+}
+.text-medium {
+    font-size: 1em;
+}
+.text-large {
+    font-size: 1.3em;
+}
+
+.div-top-after-thumbnail {
+    line-height: 1em;
+    padding-top: 10px;
+}
+
+.div-bottom-after-thumbnail {
+    line-height: 1em;
+    padding-bottom: 10px;
+}
+
+.header .text-after-thumbnail {
+    position: relative;
+}
+
+.header .text-after-thumbnail .user-name {
+    position: absolute;
+    top: 2px;
+}
+
+.header .text-after-thumbnail .active-status {
+    position: absolute;
+    top: 21px;
+}
+
+#search-box > label {
+    position: relative;
+}
+
+#search-box > label::before {
+    background-image: url(../images/all-icon.png);
+    background-repeat: no-repeat;
+    background-size: 28px 1006px;
+    background-position: 0 -656px;
+    content: '';
+    display: inline-block;
+    height: 16px;
+    left: 23px;
+    position: absolute;
+    top: 10px;
+    width: 16px;
+}
+
+#search-box > label > input {
+    width:100%;
+    border: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, .04);
+    border-radius: 50px;
+    font-size: 15px;
+    height: 36px;
+    padding-left: 36px;
+    padding-right: 16px;
+    text-align: left;
+}
+
+#search-box > label > input:focus {
+    outline: none;
+}
+
+.main-content {
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    margin-right: -15px;
+}
+.messages {
+    height: calc(100vh - 110px);
+    overflow-y: scroll;
+    margin-right: -15px;
+}
+
+.messages ul li {
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+    font-size: 0.9em;
+}
+
+.messages ul li p {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 55%;
+    line-height: 130%;
+}
+
+.messages ul li.recieved p {
+    background: rgba(204, 204, 204, 0.51);
+    color: #435f7a;
+}
+
+.messages ul li.recieved img {
+    margin: 6px 8px 0 0;
+}
+
+.messages ul li.sent p {
+    background: #435f7a;
+    color: #f5f5f5;
+    float: right;
+}
+
+.messages ul li.sent img {
+    float: right;
+    margin: 6px 0 0 8px;
+}
+
+.message-input {
+    position: sticky;
+    bottom: 0px;
+    height: 50px;
+}
+.message-input .wrap input{
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    float: left;
+    border: none;
+    width: 100%;
+    padding: 11px 32px 10px 8px;
+    font-size: 0.8em;
+    color: #32465a;
+}
+
+.message-input .wrap input:focus {
+    outline: none;
+}
